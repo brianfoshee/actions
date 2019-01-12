@@ -1,9 +1,13 @@
 FROM debian:latest
 
-LABEL "com.github.actions.name"="LFS Pull"
-LABEL "com.github.actions.description"="Pull images from git lfs"
-LABEL "com.github.actions.icon"="code"
+LABEL "com.github.actions.name"="git lfs pull"
+LABEL "com.github.actions.description"="Pulls all git lfs files that were added in the current commit."
+LABEL "com.github.actions.icon"="download"
 LABEL "com.github.actions.color"="yellow"
+
+LABEL "repository"="http://github.com/brianfoshee/actions"
+LABEL "homepage"="http://github.com/brianfoshee/actions"
+LABEL "maintainer"="Brian Foshee <brian@brianfoshee.com>"
 
 RUN build_deps="curl" && \
     apt-get update && \
