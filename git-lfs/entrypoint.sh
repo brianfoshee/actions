@@ -3,7 +3,8 @@
 set -eu
 
 echo "Getting all jpg files included in this commit"
-files=$(git diff-tree --diff-filter=A --no-commit-id --name-only -r ${GITHUB_SHA})
+git diff-tree --diff-filter=A --no-commit-id --name-only -r ${GITHUB_SHA} > ${HOME}/lfs-images.txt
+files=$(cat ${HOME}/lfs-images.txt)
 
 # Check if there are any jpg files.
 # I don't know how to set a variable and then check if it's valid so this is
@@ -24,5 +25,7 @@ if [[ $(echo "$files" | grep ".jpg") ]]; then
   git lfs pull --include $csv_string
 else
     echo "No jpg files are in this commit."
-    exit 0
+    # exit 'neutral' so processes down the line don't run
+    # https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#exit-codes-and-statuses
+    exit 78
 fi
