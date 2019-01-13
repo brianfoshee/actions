@@ -3,15 +3,19 @@
 set -eu
 
 echo "Getting all jpg files included in this commit"
-git diff-tree --diff-filter=A --no-commit-id --name-only -r ${GITHUB_SHA} > ${HOME}/lfs-images.txt
-files=$(cat ${HOME}/lfs-images.txt)
+git diff-tree --diff-filter=A --no-commit-id --name-only -r ${GITHUB_SHA} > ${HOME}/lfs-files.txt
+files=$(cat ${HOME}/lfs-files.txt)
 
 # Check if there are any jpg files.
 # I don't know how to set a variable and then check if it's valid so this is
 # duplicated for now.
 if [[ $(echo "$files" | grep ".jpg") ]]; then
   jpgs=$(echo "$files" | grep ".jpg")
-  # git lfs pull wants a comma-separated string of filenames
+
+  # output list of only images
+  echo $jpgs | tr ' ' '\n' > ${HOME}/lfs-images.txt
+
+  # 'git lfs pull' wants a comma-separated string of filenames
   csv_string=$(echo $jpgs | sed -e "s/ /,/g")
 
   # setup auth for lfs calls so that
