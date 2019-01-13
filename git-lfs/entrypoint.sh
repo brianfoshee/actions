@@ -3,8 +3,8 @@
 set -eu
 
 echo "Getting all jpg files included in this commit"
-git diff-tree --diff-filter=A --no-commit-id --name-only -r ${GITHUB_SHA} > ${HOME}/lfs-files.txt
-files=$(cat ${HOME}/lfs-files.txt)
+git diff-tree --diff-filter=A --no-commit-id --name-only -r ${GITHUB_SHA} > ${HOME}/commit-files.txt
+files=$(cat ${HOME}/commit-files.txt)
 
 # Check if there are any jpg files.
 # I don't know how to set a variable and then check if it's valid so this is
