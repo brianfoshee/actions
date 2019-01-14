@@ -28,7 +28,7 @@ if [[ $(echo "$files" | grep ".jpg") ]]; then
   echo "Pulling images from  git lfs"
   git lfs pull --include $csv_string
 else
-    echo "No jpg files are in this commit."
+    echo "No jpg files were added in this commit."
     # exit 'neutral' so processes down the line don't run
     # https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#exit-codes-and-statuses
     exit 78
