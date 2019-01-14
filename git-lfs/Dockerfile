@@ -5,8 +5,8 @@ LABEL "com.github.actions.description"="Pulls all git lfs files that were added 
 LABEL "com.github.actions.icon"="download"
 LABEL "com.github.actions.color"="yellow"
 
-LABEL "repository"="http://github.com/brianfoshee/actions"
-LABEL "homepage"="http://github.com/brianfoshee/actions"
+LABEL "repository"="https://github.com/brianfoshee/actions"
+LABEL "homepage"="https://github.com/brianfoshee/actions"
 LABEL "maintainer"="Brian Foshee <brian@brianfoshee.com>"
 
 RUN build_deps="curl" && \
